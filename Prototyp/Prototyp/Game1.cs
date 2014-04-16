@@ -19,6 +19,8 @@ namespace Prototyp
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        // hej
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
