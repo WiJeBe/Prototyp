@@ -11,15 +11,28 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Prototyp
 {
-    /// <summary>
-    /// This is the main type for your game
-    /// </summary>
+/*
+ Att läsa!
+ Hej!
+ När du, blir mer välkomnande och personligt när jag säger "du", kollar runt i klasserna kommer du se att det mest bara är oläsligt kladd som står där. 
+ Jag ber om ursäkt för det faktumet och lovar att se över formuleringar och tankegångar under dagen imorgon. Har du ändå frågor kan jag nås via min 
+ mail (JvAulin@gmail.com), skype (joakim.aulin) eller telefon (0704946874). Telefonen är knasig så om du inte kommer fram på den, skicka ett mess så 
+ ringer jag upp. 
+ 
+ Om du promt vill börja på en del imorgon eller inatt så rekomenderar jag platformarna, normal-varianten. När du fått dom att fungera korrekt kan du
+ bygga en antingen en manager klass eller metod (metoden i Game1 förslagsvis) som styr intervallet för släpp av nya Pads.
+  
+ // JvA
+ 
+ */
     public class Game1 : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        SpriteBatch sB;
 
-        // hej
+		  public static Texture2D PlatformTexture_Dummy { protected set; get; }
+
+
 
         public Game1()
         {
@@ -27,12 +40,7 @@ namespace Prototyp
             Content.RootDirectory = "Content";
         }
 
-        /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
-        /// </summary>
+
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
@@ -40,47 +48,32 @@ namespace Prototyp
             base.Initialize();
         }
 
-        /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
-        /// </summary>
+
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            // TODO: use this.Content to load your game content here
+            sB = new SpriteBatch(GraphicsDevice);
+				
+				// Laddar in platformstexturen
+				PlatformTexture_Dummy = Content.Load<Texture2D>( @"WhiteSqr" );
         }
 
-        /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// all content.
-        /// </summary>
+
         protected override void UnloadContent()
-        {
-            // TODO: Unload any non ContentManager content here
-        }
+        {	}
 
-        /// <summary>
-        /// Allows the game to run logic such as updating the world,
-        /// checking for collisions, gathering input, and playing audio.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+
         protected override void Update(GameTime gameTime)
         {
-            // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+            // Esc avslutar spelet...
+            if( Keyboard.GetState().IsKeyDown( Keys.Escape ) )
                 this.Exit();
 
-            // TODO: Add your update logic here
+            
 
             base.Update(gameTime);
         }
 
-        /// <summary>
-        /// This is called when the game should draw itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
@@ -89,5 +82,5 @@ namespace Prototyp
 
             base.Draw(gameTime);
         }
-    }
+	 }
 }
