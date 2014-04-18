@@ -107,14 +107,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Object.cs" />
-    <Compile Include="Pad.cs" />
+    <Compile Include="GameObjects\Units\Unit_Char.cs" />
+    <Compile Include="SupportClasses\Constants.cs" />
+    <Compile Include="SupportClasses\Enum.cs" />
+    <Compile Include="GameObjects\Objects\Object.cs" />
+    <Compile Include="GameObjects\Pads\Pad.cs" />
+    <Compile Include="SupportClasses\Event.cs" />
+    <Compile Include="SupportClasses\KeyMouse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
-    <Compile Include="Unit.cs" />
-    <Compile Include="Unit_Animation.cs" />
-    <Compile Include="Unit_Controls.cs" />
+    <Compile Include="GameObjects\Units\Unit.cs" />
+    <Compile Include="GameObjects\Units\Unit_Animation.cs" />
+    <Compile Include="GameObjects\Units\Unit_Controls.cs" />
+    <Compile Include="SupportClasses\Textures.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

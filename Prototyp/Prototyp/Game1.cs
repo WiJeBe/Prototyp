@@ -11,27 +11,13 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Prototyp
 {
-/*
- Att läsa!
- Hej!
- När du, blir mer välkomnande och personligt när jag säger "du", kollar runt i klasserna kommer du se att det mest bara är oläsligt kladd som står där. 
- Jag ber om ursäkt för det faktumet och lovar att se över formuleringar och tankegångar under dagen imorgon. Har du ändå frågor kan jag nås via min 
- mail (JvAulin@gmail.com), skype (joakim.aulin) eller telefon (0704946874). Telefonen är knasig så om du inte kommer fram på den, skicka ett mess så 
- ringer jag upp. 
- 
- Om du promt vill börja på en del imorgon eller inatt så rekomenderar jag platformarna, normal-varianten. När du fått dom att fungera korrekt kan du
- bygga en antingen en manager klass eller metod (metoden i Game1 förslagsvis) som styr intervallet för släpp av nya Pads.
-  
- // JvA
- 
- */
     public class Game1 : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch sB;
 
-		  public static Texture2D PlatformTexture_Dummy { protected set; get; }
-
+		  
+		  Unit_Char p1;
 
 
         public Game1()
@@ -52,9 +38,9 @@ namespace Prototyp
         protected override void LoadContent()
         {
             sB = new SpriteBatch(GraphicsDevice);
-				
-				// Laddar in platformstexturen
-				PlatformTexture_Dummy = Content.Load<Texture2D>( @"WhiteSqr" );
+				Textures.LoadTextures( Content );
+
+				p1 = new Unit_Char( new Vector2( 100, 100 ), new Vector2( 1, 1 ), new Vector2( 40, 9.81f ), PlayerID.P1 );
         }
 
 
@@ -62,25 +48,47 @@ namespace Prototyp
         {	}
 
 
-        protected override void Update(GameTime gameTime)
+        protected override void Update( GameTime gT )
         {
             // Esc avslutar spelet...
             if( Keyboard.GetState().IsKeyDown( Keys.Escape ) )
                 this.Exit();
 
-            
+            KeyMouse.Update();
 
-            base.Update(gameTime);
+				p1.Update( gT );
+
+
+            base.Update( gT );
         }
 
 
-        protected override void Draw(GameTime gameTime)
+        protected override void Draw( GameTime gT )
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear( Color.CornflowerBlue );
 
-            // TODO: Add your drawing code here
+            sB.Begin();
 
-            base.Draw(gameTime);
+				p1.Draw( sB );
+
+				sB.End();
+
+            base.Draw( gT );
         }
 	 }
 }
+/*
+ ATT-GÖRA LISTA!
+ - = Ej påbörjad
+ * = Påbörjad
+ V = Klar
+Namn	:	Status	:		Uppgift 
+		:		-		:	Anpassa acc-variabeln så att karaktären "bromsar in" vid riktningsbyte
+		:		-		:	Gör så att acc minskar om spelaren inte håller inne en "sido-styrnings knapp" 
+JvA	:		V		:	Implementera metoder för styrningskontroll.
+JvA	:		V		:	Koppla ihop styrningskontrollerna med metoderna i Unit så att enheten kan utföra något när kontrollen används.
+JvA	:		*		:	Matematiken i "Gravity" metoden behöver ses över av någon som känner sig mer säker på ämnet än jag. //JvA
+ 
+ 
+ 
+ */
