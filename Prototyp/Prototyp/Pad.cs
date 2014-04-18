@@ -18,7 +18,6 @@ namespace Prototyp
 	{
 	// Variable(s)
 		public Rectangle HitBox { protected set; get; }
-		protected Texture2D padTex;
 		protected int width, height;
 
 
@@ -30,7 +29,7 @@ namespace Prototyp
 		// Constructor no.2: Används när "Pad" skall användas som en "Normal"-plattform, dvs en platform som bara faller lodrät och inget annat.
 		public Pad( Vector2 pos, Point padWidthHeight ) : base( pos, new Vector2( 0, 1 ), new Vector2( 0, 9.81f ) )
 		{
-			padTex = Game1.PlatformTexture_Dummy;
+			tex = Game1.PlatformTexture_Dummy;
 			width = padWidthHeight.X;
 			height = padWidthHeight.Y;
 		}
@@ -45,7 +44,8 @@ namespace Prototyp
 
 		public override void Draw( SpriteBatch sB )
 		{
-			sB.Draw( padTex, HitBox, Color.Bisque ); // ritar ut paden.
+            if (Alive) // Ritar ut endast om det är true
+			    sB.Draw( tex, HitBox, Color.Bisque ); // ritar ut paden.
 		}
 	}
 }

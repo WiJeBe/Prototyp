@@ -17,9 +17,10 @@ namespace Prototyp
 	class Object
 	{
 	// Variable(s)
-		protected Vector2 pos; // objektets nuvarande position på spelplanen
+		public Vector2 pos; // objektets nuvarande position på spelplanen
 		protected Vector2 vel; // objektets riktningsvektor både i x- och y-led.
 		protected Vector2 acc; // objektets hastighetsökning.
+        protected Texture2D tex; // objektets texture
 		public bool Alive { protected set; get; }
 
 	// Constructor
