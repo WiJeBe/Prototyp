@@ -3,25 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Prototyp
 {
 /*
 	Unit_Animation klassen kommer att vara ett tomt skal just nu. Tanken är att fylla den med kontroller för sprite-animationer för karaktären.
  
-	AG-Lista:
-	-
+	AG-Lista - Se Game1 (längst ner)
 */
-	class Unit_Animation : Unit
+	abstract class Unit_Animation : Unit
 	{
 	// Variable(s)
 	//		-
 
 
 	// Constructor
-		public Unit_Animation() : base( Vector2.Zero )
+		public Unit_Animation( Vector2 pos, Vector2 vel, Vector2 acc ) : base( pos, vel, acc )
 		{
-			// Constructor kommer att behöva förmedla variabler högre upp i hierarkin, men just nu lämnade jag den tom.
+			// Constructorn lämnas tom eftersom att den här klassen inte kommer behövas förens vi har spritesheets som ska animeras.
 		}
 
 

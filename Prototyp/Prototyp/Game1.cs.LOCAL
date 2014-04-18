@@ -18,9 +18,12 @@ namespace Prototyp
      Jag ber om ursäkt för det faktumet och lovar att se över formuleringar och tankegångar under dagen imorgon. Har du ändå frågor kan jag nås via min 
      mail (JvAulin@gmail.com), skype (joakim.aulin) eller telefon (0704946874). Telefonen är knasig så om du inte kommer fram på den, skicka ett mess så 
      ringer jag upp. 
+ 
      Om du promt vill börja på en del imorgon eller inatt så rekomenderar jag platformarna, normal-varianten. När du fått dom att fungera korrekt kan du
      bygga en antingen en manager klass eller metod (metoden i Game1 förslagsvis) som styr intervallet för släpp av nya Pads.
+  
      // JvA
+ 
      */
     public class Game1 : Microsoft.Xna.Framework.Game
     {
@@ -29,7 +32,7 @@ namespace Prototyp
 
         public static int screenWidth, screenHeight; // Storleken på fönstret
 
-        Unit_Char p1;
+        public static Texture2D PlatformTexture_Dummy { protected set; get; }
         PadManager padManager;
 
 
@@ -51,20 +54,19 @@ namespace Prototyp
         protected override void LoadContent()
         {
             sB = new SpriteBatch(GraphicsDevice);
-            Textures.LoadTextures(Content);
 
             IsMouseVisible = true;
 
-            p1 = new Unit_Char(new Vector2(100, 100), new Vector2(2, 2), new Vector2(40, 9.81f), PlayerID.P1);
-
             // Storleken på fönstret sätts
             screenHeight = graphics.PreferredBackBufferHeight = 600;
-            screenWidth = graphics.PreferredBackBufferWidth = 1000;
+            screenWidth = graphics.PreferredBackBufferWidth = 800;
             graphics.ApplyChanges();
 
+            // Laddar in platformstexturen
+            PlatformTexture_Dummy = Content.Load<Texture2D>(@"WhiteSqr");
 
-            // skapar en padManager variabel och skickar med spelaren
-            padManager = new PadManager(p1);
+            // skapar en padManager variabel
+            padManager = new PadManager();
         }
 
 
@@ -72,48 +74,29 @@ namespace Prototyp
         { }
 
 
-        protected override void Update(GameTime gT)
+        protected override void Update(GameTime gameTime)
         {
             // Esc avslutar spelet...
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 this.Exit();
 
-            KeyMouse.Update();
-            padManager.Update(gT);
-            p1.Update(gT);
+            //Uppdatera padmanager
+            padManager.Update(gameTime);
 
-            
-
-            base.Update(gT);
+            base.Update(gameTime);
         }
 
 
-        protected override void Draw(GameTime gT)
+        protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             sB.Begin();
 
-            p1.Draw(sB);
+            // Ritar ut padManager
             padManager.Draw(sB);
-
+                
             sB.End();
-
-            base.Draw(gT);
+            base.Draw(gameTime);
         }
     }
 }
-/*
- ATT-GÖRA LISTA!
- - = Ej påbörjad
- * = Påbörjad
- V = Klar
-Namn	:	Status	:		Uppgift 
-		:		-		:	Anpassa acc-variabeln så att karaktären "bromsar in" vid riktningsbyte
-		:		-		:	Gör så att acc minskar om spelaren inte håller inne en "sido-styrnings knapp" 
-JvA	:		V		:	Implementera metoder för styrningskontroll.
-JvA	:		V		:	Koppla ihop styrningskontrollerna med metoderna i Unit så att enheten kan utföra något när kontrollen används.
-JvA	:		*		:	Matematiken i "Gravity" metoden behöver ses över av någon som känner sig mer säker på ämnet än jag. //JvA
- 
- 
- 
- */

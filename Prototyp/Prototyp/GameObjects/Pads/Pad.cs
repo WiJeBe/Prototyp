@@ -11,15 +11,13 @@ namespace Prototyp
 	Pad är huvudklass för alla platformstyper, men fungerar också som "normal" versionen av platformarna.
 	Innehåller en HitBox som används för kollision med "Units". Innehåller variabel för Padens textur.
 	
-	AG-Lista:
-	() ...
+	AG-Lista - Se Game1 (längst ner)
 */
 	class Pad : Object
 	{
 	// Variable(s)
-		public Rectangle HitBox { protected set; get; }
 		protected int width, height;
-
+        
 
 	// Constructor(s)
 		// Constructor no.1: Används av andra Pad classer för att initialisera variabler uppåt i hierarkin.
@@ -27,9 +25,9 @@ namespace Prototyp
 		{		}  
 		
 		// Constructor no.2: Används när "Pad" skall användas som en "Normal"-plattform, dvs en platform som bara faller lodrät och inget annat.
-		public Pad( Vector2 pos, Point padWidthHeight ) : base( pos, new Vector2( 0, 1 ), new Vector2( 0, 9.81f ) )
+		public Pad( Vector2 pos, Point padWidthHeight ) : base( pos, new Vector2( 0, 0.4f ), new Vector2( 0, 9.81f ) )
 		{
-			tex = Game1.PlatformTexture_Dummy;
+			tex = Textures.Texture_Dummy;
 			width = padWidthHeight.X;
 			height = padWidthHeight.Y;
 		}
@@ -37,7 +35,8 @@ namespace Prototyp
 	// Method(s)
 		public override void Update( GameTime gT )
 		{
-			base.Update( gT ); // kör Objects update metod (gravitationen)
+            pos += vel;
+            //base.Update( gT ); // kör Objects update metod (gravitationen)
 			HitBox = new Rectangle( (int)pos.X, (int)pos.Y, width, height ); // Uppdaterar hitbox-rektangelns värden.
 		}
 
