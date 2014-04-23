@@ -22,8 +22,8 @@ namespace Prototyp
 		public Unit_Char( Vector2 pos, Vector2 vel, Vector2 acc, PlayerID pID ) : base( pos, vel, acc, pID )
 		{
 			tex = Textures.Texture_Dummy;
-			OnTerraFirma = true;
-            source = new Rectangle((int)pos.X, (int)pos.Y, 50, 50);
+			//OnTerraFirma = true;
+            HitBox = new Rectangle((int)pos.X, (int)pos.Y, 50, 50);
 		}
 
 	//Method(s)
@@ -44,7 +44,7 @@ namespace Prototyp
 
 		public override void Draw( SpriteBatch sB )
 		{
-			sB.Draw( tex, source, Color.Red );
+			sB.Draw( tex, HitBox, Color.Red );
 		}
 
 

@@ -22,7 +22,7 @@ namespace Prototyp
         protected Vector2 vel; // objektets riktningsvektor både i x- och y-led.
         protected Vector2 acc; // objektets hastighetsökning.
         protected Texture2D tex; // objektets texture
-        protected Rectangle source; 
+       // protected Rectangle source; 
 
 
         // Constructor
@@ -49,8 +49,8 @@ namespace Prototyp
         // Hanterar gravitationens påverkan på objektet över tid.
         protected virtual void Gravity(GameTime gT)
         {
-            pos.Y += vel.Y * (float)gT.ElapsedGameTime.TotalSeconds + ((acc.Y * (float)Math.Pow(gT.ElapsedGameTime.TotalSeconds, 2)) / 2); // Förändrar positionsvektorn med hastigheten multiplicerat med totala tiden.
-            vel.Y += acc.Y * (float)gT.ElapsedGameTime.TotalSeconds; // Förändrar hastighetsvektorn med acc-vektorn multiplicerat med den totala tiden.  
+            pos.Y += vel.Y * (float)gT.ElapsedGameTime.TotalSeconds + ((acc.Y * (float)Math.Pow(gT.ElapsedGameTime.TotalSeconds, 2)) / 2); 
+            vel.Y += acc.Y * (float)gT.ElapsedGameTime.TotalSeconds;   
         
         }
     }

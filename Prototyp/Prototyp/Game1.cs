@@ -11,24 +11,13 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Prototyp
 {
-    /*
-     Att läsa!
-     Hej!
-     När du, blir mer välkomnande och personligt när jag säger "du", kollar runt i klasserna kommer du se att det mest bara är oläsligt kladd som står där. 
-     Jag ber om ursäkt för det faktumet och lovar att se över formuleringar och tankegångar under dagen imorgon. Har du ändå frågor kan jag nås via min 
-     mail (JvAulin@gmail.com), skype (joakim.aulin) eller telefon (0704946874). Telefonen är knasig så om du inte kommer fram på den, skicka ett mess så 
-     ringer jag upp. 
-     Om du promt vill börja på en del imorgon eller inatt så rekomenderar jag platformarna, normal-varianten. När du fått dom att fungera korrekt kan du
-     bygga en antingen en manager klass eller metod (metoden i Game1 förslagsvis) som styr intervallet för släpp av nya Pads.
-     // JvA
-     */
     public class Game1 : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch sB;
 
-        public static int screenWidth, screenHeight; // Storleken på fönstret
-
+        
+		  // Test-grejer
         Unit_Char p1;
         PadManager padManager;
 
@@ -42,8 +31,6 @@ namespace Prototyp
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
             base.Initialize();
         }
 
@@ -51,20 +38,21 @@ namespace Prototyp
         protected override void LoadContent()
         {
             sB = new SpriteBatch(GraphicsDevice);
-            Textures.LoadTextures(Content);
-
             IsMouseVisible = true;
+				Textures.LoadTextures(Content);
+
+            
 
             p1 = new Unit_Char(new Vector2(100, 100), new Vector2(2, 2), new Vector2(40, 9.81f), PlayerID.P1);
 
             // Storleken på fönstret sätts
-            screenHeight = graphics.PreferredBackBufferHeight = 600;
-            screenWidth = graphics.PreferredBackBufferWidth = 1000;
+            Constants.SCREEN_HEIGHT = graphics.PreferredBackBufferHeight = 600;
+            Constants.SCREEN_WIDTH = graphics.PreferredBackBufferWidth = 1000;
             graphics.ApplyChanges();
 
 
             // skapar en padManager variabel och skickar med spelaren
-            padManager = new PadManager(p1);
+            padManager = new PadManager( /*p1 */ );
         }
 
 

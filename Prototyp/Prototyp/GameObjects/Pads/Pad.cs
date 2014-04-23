@@ -37,7 +37,10 @@ namespace Prototyp
 		{
             pos += vel;
             //base.Update( gT ); // kör Objects update metod (gravitationen)
-			HitBox = new Rectangle( (int)pos.X, (int)pos.Y, width, height ); // Uppdaterar hitbox-rektangelns värden.
+				if( (int)pos.Y >= Constants.SCREEN_HEIGHT + height/2 )
+					Alive = false;
+					 
+				HitBox = new Rectangle( (int)pos.X, (int)pos.Y, width, height ); // Uppdaterar hitbox-rektangelns värden.
 		}
 
 

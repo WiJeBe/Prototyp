@@ -22,7 +22,7 @@ namespace Prototyp
 		// konstruktorn är fylld med dummy-värden bara för att få något utritat
 		public Unit( Vector2 pos, Vector2 vel, Vector2 acc ) : base ( pos, vel, acc )
 		{
-			
+			OnTerraFirma = true;
 		}
 
 	// Method(s)
@@ -53,7 +53,7 @@ namespace Prototyp
 		{
 			pos.X += vel.X * (float)( gT.ElapsedGameTime.TotalSeconds );
 			
-			if( ( dir == Direction.RIGHT && vel.X < 60 ) || ( dir == Direction.LEFT && vel.X > -60 ) )
+			if( ( dir == Direction.RIGHT && vel.X < 80 ) || ( dir == Direction.LEFT && vel.X > -80 ) )
 			{
 				if( !OnTerraFirma )
 					vel.X += acc.X * (float)gT.ElapsedGameTime.TotalSeconds; 	
