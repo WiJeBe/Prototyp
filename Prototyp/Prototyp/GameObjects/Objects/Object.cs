@@ -17,7 +17,13 @@ namespace Prototyp
     {
         // Variable(s)
         public bool Alive { protected set; get; }
-        public Rectangle HitBox { protected set; get; }
+        public Rectangle hitBox;
+        //public Rectangle HitBox
+        //{
+        //    get { return hitBox; }
+        //    set { hitBox = value; }
+            
+        //}
         public Vector2 pos; // objektets position
         protected Vector2 vel; // objektets riktningsvektor både i x- och y-led.
         protected Vector2 acc; // objektets hastighetsökning.
@@ -52,6 +58,12 @@ namespace Prototyp
             pos.Y += vel.Y * (float)gT.ElapsedGameTime.TotalSeconds + ((acc.Y * (float)Math.Pow(gT.ElapsedGameTime.TotalSeconds, 2)) / 2); 
             vel.Y += acc.Y * (float)gT.ElapsedGameTime.TotalSeconds;   
         
+        }
+
+        // Kollar kollision med plattform.
+        public virtual bool IsColliding(Pad p)
+        {
+            return hitBox.Intersects(p.hitBox);
         }
     }
 }

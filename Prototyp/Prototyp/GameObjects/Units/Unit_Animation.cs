@@ -16,14 +16,36 @@ namespace Prototyp
 	{
 	// Variable(s)
 	//		-
-
-
+        protected Rectangle source; // Rektangel för att sen vid animation kunna plocka fram rätt frame
+        protected int currentFrame; // Vilken frame som syns för tillfället 
+        protected int nrOfFrames; // Antalet frames i x resp y led.
+        private float timeSinceLastFrame = 0.0f;
+        private float timeBetweenFrames = 100.0f;
 	// Constructor
 		public Unit_Animation( Vector2 pos, Vector2 vel, Vector2 acc ) : base( pos, vel, acc )
 		{
+            
 			// Constructorn lämnas tom eftersom att den här klassen inte kommer behövas förens vi har spritesheets som ska animeras.
 		}
 
+        public override void Update(GameTime gT)
+        {
+            timeSinceLastFrame += (float)gT.ElapsedGameTime.Milliseconds;
+
+            if (timeSinceLastFrame >= timeBetweenFrames)
+            {
+                timeSinceLastFrame -= timeBetweenFrames;
+                currentFrame++;
+
+                if (currentFrame >= nrOfFrames)
+                {
+                    currentFrame = 0;
+                }
+            }
+            source.X = currentFrame * tex.Width / nrOfFrames;
+
+            base.Update(gT);
+        }
 
 	// Method(s)
 	//		-

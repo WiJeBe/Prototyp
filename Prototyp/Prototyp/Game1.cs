@@ -70,7 +70,14 @@ namespace Prototyp
             padManager.Update(gT);
             p1.Update(gT);
 
-            
+            // Kontrollerar om spelare kolliderar på en plattform
+            foreach (Pad p in padManager.pads)
+            {
+                if (p1.IsColliding(p))
+                {
+                    p1.HandleCollision(p);
+                }
+            }
 
             base.Update(gT);
         }

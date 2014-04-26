@@ -40,14 +40,14 @@ namespace Prototyp
 				if( (int)pos.Y >= Constants.SCREEN_HEIGHT + height/2 )
 					Alive = false;
 					 
-				HitBox = new Rectangle( (int)pos.X, (int)pos.Y, width, height ); // Uppdaterar hitbox-rektangelns värden.
+				hitBox = new Rectangle( (int)pos.X, (int)pos.Y, width, height ); // Uppdaterar hitbox-rektangelns värden.
 		}
 
 
 		public override void Draw( SpriteBatch sB )
 		{
             if (Alive) // Ritar ut endast om det är true
-			    sB.Draw( tex, HitBox, Color.Bisque ); // ritar ut paden.
+			    sB.Draw( tex, hitBox, Color.Bisque ); // ritar ut paden.
 		}
 	}
 }

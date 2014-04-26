@@ -14,7 +14,7 @@ namespace Prototyp
     class PadManager
     {
 		// Variable(s)
-        List<Pad> pads; // Lista med plattformar
+        public List<Pad> pads; // Lista med plattformar
 			// Unit_Char p1; // Håller reda på kollision med spelare
 			//	Point padSize;
 			//	Random random;
